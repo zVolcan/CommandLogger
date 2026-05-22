@@ -1,0 +1,6 @@
+name: CommandLogger
+version: '${version}'
+
+main: xyz.zenith.commandLogger.CommandLogger
+api-version: '1.18'
+load: POSTWORLD
