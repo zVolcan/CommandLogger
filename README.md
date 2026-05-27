@@ -54,7 +54,7 @@ luckperms-log:
 
 ## Requirements
 
-- PaperMC 1.21.11 or compatible
+- Minecraft Paper 1.21 or higher
 - Java 21
 
 ## Notes
