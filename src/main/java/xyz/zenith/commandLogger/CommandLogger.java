@@ -20,6 +20,15 @@ public final class CommandLogger extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        getLogger().info("§7╔══════════════════════════════════════╗§7");
+        getLogger().info("§7║   §b  ____                        _     §7║§7");
+        getLogger().info("§7║   §b / ___|___  _ __ ___  _ __   | |___ §7║§7");
+        getLogger().info("§7║   §b| |   / _ \\| '_ ` _ \\| '_ \\  | / __|§7║§7");
+        getLogger().info("§7║   §b| |__| (_) | | | | | | |_) | | \\__ \\§7║§7");
+        getLogger().info("§7║   §b \\____\\___/|_| |_| |_| .__/  |_|___/§7║§7");
+        getLogger().info("§7║   §e      CommandLogger Loaded          §7║§7");
+        getLogger().info("§7╚══════════════════════════════════════╝§7");
+
         discordLogger = new DiscordLogger(this);
         getServer().getPluginManager().registerEvents(this, this);
 
@@ -37,6 +46,10 @@ public final class CommandLogger extends JavaPlugin implements Listener {
         final Player player = event.getPlayer();
         final String command = event.getMessage();
         getServer().getScheduler().runTaskAsynchronously(this, () -> {
+            if (player.hasPermission("commandlogger.bypass")) {
+                return;
+            }
+
             discordLogger.sendMessage(player, command);
             List<String> commands = new ArrayList<>(commandMap.get(player.getName()));
             commands.add(command);

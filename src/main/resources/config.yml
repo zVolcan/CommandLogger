@@ -1,1 +1,8 @@
 discord-webhook-url: ""
+
+luckperms-log:
+    enabled: true
+    discord-webhook-url: ""
+
+## DONT TOUCH
+config-version: 1

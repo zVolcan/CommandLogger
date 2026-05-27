@@ -1,6 +1,5 @@
 package xyz.zenith.commandLogger;
 
-import com.eduardomcb.discord.webhook.WebhookClient;
 import com.eduardomcb.discord.webhook.WebhookManager;
 import com.eduardomcb.discord.webhook.models.Message;
 import lombok.Getter;
@@ -32,7 +31,6 @@ public final class DiscordLogger {
                 new Message()
                         .setAvatarUrl("https://render.crafty.gg/2d/head/" +  player.getUniqueId().toString().replace("-", ""))
                         .setContent("**Command Executed:** " + command)
-                
                 )
                 .exec();
     }

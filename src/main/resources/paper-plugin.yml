@@ -1,6 +1,14 @@
 name: CommandLogger
 version: '${version}'
-
 main: xyz.zenith.commandLogger.CommandLogger
-api-version: '1.18'
+api-version: '1.21'
 load: POSTWORLD
+authors:
+  - "volcqnn"
+website: "zvolcan.site"
+dependencies:
+  server:
+    LuckPerms:
+      join-classpath: true
+      load: BEFORE
+      required: false
