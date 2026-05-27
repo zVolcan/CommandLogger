@@ -1,5 +1,11 @@
 discord-webhook-url: ""
 
+bypass:
+  - "tpa"
+  - "tpaccept"
+  - "spawn"
+  - "home"
+
 luckperms-log:
     enabled: true
     discord-webhook-url: ""

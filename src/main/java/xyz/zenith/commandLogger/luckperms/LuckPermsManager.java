@@ -26,6 +26,7 @@ public final class LuckPermsManager {
 
         this.plugin = plugin;
         this.luckPerms = plugin.getServer().getServicesManager().load(LuckPerms.class);
+        registerEventLog();
     }
 
     public List<String> getPlayerCache(String playerName) {

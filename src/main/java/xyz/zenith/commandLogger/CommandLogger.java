@@ -1,6 +1,7 @@
 package xyz.zenith.commandLogger;
 
 import lombok.Getter;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.zenith.commandLogger.commands.MainCommand;
+import xyz.zenith.commandLogger.luckperms.LuckPermsManager;
 
 import java.util.*;
 
@@ -15,6 +17,8 @@ public final class CommandLogger extends JavaPlugin implements Listener {
 
     @Getter
     private DiscordLogger discordLogger;
+    @Getter
+    private LuckPermsManager luckPermsManager;
     @Getter
     private final Map<String, List<String>> commandMap = new HashMap<>();
 
@@ -30,9 +34,10 @@ public final class CommandLogger extends JavaPlugin implements Listener {
         getLogger().info("§7╚══════════════════════════════════════╝§7");
 
         discordLogger = new DiscordLogger(this);
+        luckPermsManager = new LuckPermsManager(this);
         getServer().getPluginManager().registerEvents(this, this);
 
-        PluginCommand pluginCommand = getCommand("commandlogger");
+        final PluginCommand pluginCommand = getCommand("commandlogger");
         Objects.requireNonNull(pluginCommand).setExecutor(new MainCommand(this));
     }
 
@@ -46,7 +51,7 @@ public final class CommandLogger extends JavaPlugin implements Listener {
         final Player player = event.getPlayer();
         final String command = event.getMessage();
         getServer().getScheduler().runTaskAsynchronously(this, () -> {
-            if (player.hasPermission("commandlogger.bypass")) {
+            if (player.hasPermission("commandlogger.bypass") || getBypassCommands().contains(command)) {
                 return;
             }
 
@@ -56,6 +61,10 @@ public final class CommandLogger extends JavaPlugin implements Listener {
 
             commandMap.put(player.getName(), commands);
         });
+    }
+
+    private List<String> getBypassCommands() {
+        return getConfig().getStringList("bypass");
     }
 
 }
