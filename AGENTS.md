@@ -68,9 +68,9 @@ No automated tests currently configured. Manual testing requires:
 # Output location
 build/libs/CommandLogger-<version>.jar  # (shadowJar produces unclassified JAR)
 
-# Plugin metadata in paper-plugin.yml
-# - api-version: 1.21
-# - dependencies: LuckPerms (optional, load BEFORE)
+# CI/CD
+# Push a tag (v*) to trigger automatic build and GitHub release
+# GitHub Actions workflow in .github/workflows/build-and-release.yml
 ```
 
 **Deployment:**
@@ -82,8 +82,21 @@ build/libs/CommandLogger-<version>.jar  # (shadowJar produces unclassified JAR)
 ## Configuration
 
 ```yaml
-# config.yml
-discord-webhook-url: ""  # Set your Discord webhook URL here
+# Discord webhook URL for sending command log notifications
+# Must be a valid Discord webhook URL (https://discord.com/api/webhooks/...)
+discord-webhook-url: ""
+
+# Commands bypassed from logging (case-insensitive)
+bypass:
+  - "tpa"
+  - "tpaccept"
+  - "spawn"
+  - "home"
+
+# LuckPerms integration settings
+luckperms-log:
+  enabled: true
+  discord-webhook-url: ""  # Override webhook URL for LuckPerms logs (optional)
 ```
 
 ## Permissions

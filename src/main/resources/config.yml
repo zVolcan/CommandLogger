@@ -1,14 +1,21 @@
+# Discord webhook URL for sending command log notifications
+# Must be a valid Discord webhook URL (https://discord.com/api/webhooks/...)
 discord-webhook-url: ""
 
+# Commands that should be bypassed from logging (case-insensitive)
+# Players with these commands won't trigger Discord notifications
 bypass:
   - "tpa"
   - "tpaccept"
   - "spawn"
   - "home"
 
+# LuckPerms integration settings
 luckperms-log:
-    enabled: true
-    discord-webhook-url: ""
+  enabled: true
+  # Override webhook URL specifically for LuckPerms-related logs
+  # If empty, uses the main discord-webhook-url
+  discord-webhook-url: ""
 
-## DONT TOUCH
+# Configuration version - DO NOT MODIFY
 config-version: 1

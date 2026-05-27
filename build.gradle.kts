@@ -4,6 +4,8 @@ plugins {
     id("com.gradleup.shadow") version "9.4.0"
 }
 
+version = "0.1-DEV"
+
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
